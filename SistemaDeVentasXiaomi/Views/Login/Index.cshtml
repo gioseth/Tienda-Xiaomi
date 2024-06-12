@@ -1,0 +1,78 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Xiaomi Style</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F5F5F5; /* Light gray background */
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-xiaomi {
+            background-color: #FF6900;
+            color: #FFFFFF;
+            border: none;
+        }
+
+            .btn-xiaomi:hover {
+                background-color: #E55A00;
+            }
+
+        .text-xiaomi {
+            color: #FF6900;
+        }
+    </style>
+</head>
+<body>
+    <div class="container d-flex align-items-center justify-content-center" style="height: 100vh;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title text-center text-xiaomi">Iniciar Sesión</h3>
+                        <form asp-action="Login" asp-controller="Login" method="post">
+                            <div class="form-group">
+                                <label for="email" class="text-xiaomi">Correo Electrónico</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Ingresas tu correo">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="text-xiaomi">Contraseña</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
+                            </div>
+                            <button type="submit" class="btn btn-xiaomi btn-block">Iniciar Sesión</button>
+                        </form>
+                        <p class="mt-3 text-center">No tienes una cuenta? <a href="#" class="text-xiaomi">Registrate</a></p>
+                        @if (TempData["LoginError"] != null)
+                        {
+                            <div class="alert alert-danger">@TempData["LoginError"]</div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>*@
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+

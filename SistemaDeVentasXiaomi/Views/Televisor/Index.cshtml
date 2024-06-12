@@ -1,0 +1,53 @@
+﻿@model IEnumerable<SistemaDeVentasXiaomi.Models.Televisor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de Televisores</h1>
+
+<p>
+    <a asp-action="Create">Crear Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TelevisorId">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.TelevisorId">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.TelevisorId">Borrar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
