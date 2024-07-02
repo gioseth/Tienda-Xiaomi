@@ -54,7 +54,7 @@ namespace SistemaDeVentasXiaomi.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TelevisorId,Modelo,Precio,Descripcion,Stock")] Televisor televisor)
+        public async Task<IActionResult> Create([Bind("TelevisorId,Modelo,Precio,Descripcion,Stock,UrlFoto")] Televisor televisor)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace SistemaDeVentasXiaomi.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TelevisorId,Modelo,Precio,Descripcion,Stock")] Televisor televisor)
+        public async Task<IActionResult> Edit(int id, [Bind("TelevisorId,Modelo,Precio,Descripcion,Stock,UrlFoto")] Televisor televisor)
         {
             if (id != televisor.TelevisorId)
             {
