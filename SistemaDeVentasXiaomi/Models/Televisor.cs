@@ -14,7 +14,7 @@ namespace SistemaDeVentasXiaomi.Models
         public int Stock { get; set; }
 
         // Relación uno a muchos con Ventas
-        public ICollection<Venta> Ventas { get; set; }
+        public ICollection<Venta>? Ventas { get; set; }
         
     }
 

@@ -13,10 +13,10 @@ namespace SistemaDeVentasXiaomi.Models
         public string? Telefono { get; set; }
         [Required]
         public string? Direccion { get; set; }
-        [Required]
+        // [Required]
 
         // Relación uno a muchos con Ventas
-        public ICollection<Venta> Ventas { get; set; }
+        public ICollection<Venta>? Ventas { get; set; }
     }
 
 }
