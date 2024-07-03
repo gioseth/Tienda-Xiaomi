@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SistemaDeVentasXiaomi.Contexto;
+using SistemaDeVentasXiaomi.Migrations;
 using SistemaDeVentasXiaomi.Models;
 
 namespace SistemaDeVentasXiaomi.Controllers
@@ -13,10 +14,12 @@ namespace SistemaDeVentasXiaomi.Controllers
     public class TelevisorController : Controller
     {
         private readonly MyContext _context;
+        IWebHostEnvironment _webHostEnvironment;
 
-        public TelevisorController(MyContext context)
+        public TelevisorController(MyContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Televisor
@@ -86,7 +89,7 @@ namespace SistemaDeVentasXiaomi.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TelevisorId,Modelo,Precio,Descripcion,Stock,UrlFoto")] Televisor televisor)
+        public async Task<IActionResult> Edit(int id, [Bind("TelevisorId,Modelo,Precio,Descripcion,Stock,FotoFile")] Televisor televisor)
         {
             if (id != televisor.TelevisorId)
             {
@@ -97,6 +100,10 @@ namespace SistemaDeVentasXiaomi.Controllers
             {
                 try
                 {
+                    if(televisor.FotoFile != null)
+                    {
+                        await GuardarImagen(televisor);
+                    }
                     _context.Update(televisor);
                     await _context.SaveChangesAsync();
                 }
@@ -115,6 +122,23 @@ namespace SistemaDeVentasXiaomi.Controllers
             }
             return View(televisor);
         }
+
+        private async Task GuardarImagen(Televisor televisor)
+        {
+            //formar el nombre de la foto
+            string wwwRootPath = _webHostEnvironment.WebRootPath;
+            string extension = Path.GetExtension(televisor.FotoFile!.FileName);
+            string nameFoto = $"{televisor.TelevisorId}{extension}";
+
+            televisor.UrlFoto = nameFoto;
+
+            //copiar la foto en el proyecyo
+            string path = Path.Combine($"{wwwRootPath}/fotos/", nameFoto);
+            var filestream = new FileStream(path, FileMode.Create);
+            await televisor.FotoFile.CopyToAsync(filestream);
+        }
+
+
 
         // GET: Televisor/Delete/5
         public async Task<IActionResult> Delete(int? id)

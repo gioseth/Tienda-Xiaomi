@@ -18,7 +18,7 @@ namespace SistemaDeVentasXiaomi.Models
         //para subir archivos
         [NotMapped]
         [Display (Name = "Cargar Foto")]
-        public IFormFile FotoFile { get; set; }
+        public IFormFile? FotoFile { get; set; }
 
 
         // Relación uno a muchos con Ventas
