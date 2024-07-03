@@ -9,9 +9,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/css/print.css" rel="stylesheet" />
+    <script src="~/js/qr.min.js"></script>
 </head>
 
-<body style="text-align:center">
+<body style="text-align:center" onload="window.print();" onafterprint="history.back()">
 
     <h1>Recibo</h1>
     <h4>Numero: @Html.DisplayFor(model => model.NroVenta) </h4>
@@ -38,5 +39,29 @@
             </tr>
         </table>
     </div>
+
+
+    <div style="margin-top: 20px; width: 80%">
+        <div id="qrcode"></div>
+    </div>
+
+    @{
+        string codigoQR = String.Format("{0}|{1}|{2}|{3}|{4}",
+        Model.NroVenta,
+        Model.Cliente!.Info,
+        Model.FechaVenta,
+        Model.Cantidad,
+        Model.Total
+        );
+    }
+
+    <script>
+        var qrcode = new QRCode("qrcode", {
+            text: "@codigoQR",
+            width: 100,
+            height: 100
+        });
+    </script>
+
 </body>
 </html>
