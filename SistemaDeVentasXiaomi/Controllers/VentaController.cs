@@ -49,8 +49,8 @@ namespace SistemaDeVentasXiaomi.Controllers
         // GET: Venta/Create
         public IActionResult Create()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "Direccion");
-            ViewData["TelevisorId"] = new SelectList(_context.Televisores, "TelevisorId", "TelevisorId");
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "Info");
+            ViewData["TelevisorId"] = new SelectList(_context.Televisores, "TelevisorId", "Info");
             return View();
         }
 
@@ -63,6 +63,9 @@ namespace SistemaDeVentasXiaomi.Controllers
         {
             if (ModelState.IsValid)
             {
+                venta.FechaVenta = DateOnly.FromDateTime(DateTime.Now);
+                venta.NroVenta = GetNumero();
+                
                 _context.Add(venta);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -72,60 +75,14 @@ namespace SistemaDeVentasXiaomi.Controllers
             return View(venta);
         }
 
-        // GET: Venta/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        private int GetNumero()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var venta = await _context.Ventas.FindAsync(id);
-            if (venta == null)
-            {
-                return NotFound();
-            }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "Direccion", venta.ClienteId);
-            ViewData["TelevisorId"] = new SelectList(_context.Televisores, "TelevisorId", "TelevisorId", venta.TelevisorId);
-            return View(venta);
+            if(_context.Ventas.ToList().Count > 0)
+                return _context.Ventas.Max(i => i.NroVenta + 1);
+            return 1;
         }
 
-        // POST: Venta/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("VentaId,NroVenta,FechaVenta,Mes,Anio,Detalle,Cantidad,PrecioUnidad,Total,ClienteId,TelevisorId")] Venta venta)
-        {
-            if (id != venta.VentaId)
-            {
-                return NotFound();
-            }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(venta);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!VentaExists(venta.VentaId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "Direccion", venta.ClienteId);
-            ViewData["TelevisorId"] = new SelectList(_context.Televisores, "TelevisorId", "TelevisorId", venta.TelevisorId);
-            return View(venta);
-        }
 
         // GET: Venta/Delete/5
         public async Task<IActionResult> Delete(int? id)

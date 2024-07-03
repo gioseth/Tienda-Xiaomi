@@ -4,34 +4,46 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>Venta</h4>
+<h1>Registrar Venta</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="NroVenta" class="control-label"></label>
-                <input asp-for="NroVenta" class="form-control" />
-                <span asp-validation-for="NroVenta" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FechaVenta" class="control-label"></label>
-                <input asp-for="FechaVenta" class="form-control" />
-                <span asp-validation-for="FechaVenta" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+                <div class="form-group">
+                    <label asp-for="ClienteId" class="control-label">Seleccione Cliente</label>
+                    <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId"></select>
+                </div>
+                <hr />
                 <label asp-for="Mes" class="control-label"></label>
-                <input asp-for="Mes" class="form-control" />
+                <select asp-for="Mes" class="form-control" required>
+                    <option value="">Seleccione..</option>
+                    <option value="1">Enero</option>
+                    <option value="2">Febrero</option>
+                    <option value="3">Marzo</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Mayo</option>
+                    <option value="6">Junio</option>
+                    <option value="7">Julio</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                </select>
                 <span asp-validation-for="Mes" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Anio" class="control-label"></label>
-                <input asp-for="Anio" class="form-control" />
+                <input type="number" value="@DateTime.Now.Year.ToString()" asp-for="Anio" class="form-control" />
                 <span asp-validation-for="Anio" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="TelevisorId" class="control-label">Seleccione Televisor</label>
+                <select asp-for="TelevisorId" class="form-control" asp-items="ViewBag.TelevisorId"></select>
+            </div>
+            
             <div class="form-group">
                 <label asp-for="Detalle" class="control-label"></label>
                 <input asp-for="Detalle" class="form-control" />
@@ -52,16 +64,9 @@
                 <input asp-for="Total" class="form-control" />
                 <span asp-validation-for="Total" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
-                <label asp-for="ClienteId" class="control-label"></label>
-                <select asp-for="ClienteId" class ="form-control" asp-items="ViewBag.ClienteId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="TelevisorId" class="control-label"></label>
-                <select asp-for="TelevisorId" class ="form-control" asp-items="ViewBag.TelevisorId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Registrar Venta" class="btn btn-primary" />
             </div>
         </form>
     </div>

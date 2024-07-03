@@ -20,6 +20,9 @@ namespace SistemaDeVentasXiaomi.Models
         [Display (Name = "Cargar Foto")]
         public IFormFile? FotoFile { get; set; }
 
+        [NotMapped]
+        public string? Info { get { return $"{Modelo} - {Precio}"; } }
+
 
         // Relación uno a muchos con Ventas
         public ICollection<Venta>? Ventas { get; set; }
