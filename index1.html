@@ -52,6 +52,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#contact">Contacto</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cliente.html" target="_blank">Cliente</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="vendedor.html" target="_blank">Vendedor</a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -202,4 +208,25 @@
                 // Añade más productos aquí
             ];
 
-            const productGrid = document.getElement
+            const productGrid = document.getElementById('product-grid');
+            products.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.classList.add('col-md-4', 'mb-4');
+
+                productElement.innerHTML = `
+                    <div class="card">
+                        <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${product.name}</h5>
+                            <p class="card-text">${product.description}</p>
+                            <p class="card-text text-primary">${product.price}</p>
+                        </div>
+                    </div>
+                `;
+
+                productGrid.appendChild(productElement);
+            });
+        });
+    </script>
+</body>
+</html>
