@@ -3,31 +3,40 @@
 @{
     Layout = null;
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/print.css" rel="stylesheet" />
+</head>
 
-<h1>Recibo</h1>
-<h4>Numero: @Html.DisplayFor(model => model.NroVenta) </h4>
+<body style="text-align:center">
 
-<hr />
+    <h1>Recibo</h1>
+    <h4>Numero: @Html.DisplayFor(model => model.NroVenta) </h4>
 
-<div>
-    <p>
-        Nombre: @Html.DisplayFor(model => model.Cliente!.Info)
-    </p>
-    <p>
-        Fecha: @Html.DisplayFor(model => model.FechaVenta)
-    </p>
-    <table>
-        <tr>
-            <th>Producto</th>
-            <th>Cantidad</th>
-            <th>Total</th>
-        </tr>
-        <tr>
-            <th>@Html.DisplayFor(model => model.Televisor!.Info)</th>
-            <th>@Html.DisplayFor(model => model.Cantidad)</th>
-            <th>@Html.DisplayFor(model => model.Total)</th>
-        </tr>
-    </table>
+    <hr />
 
-   
-
+    <div>
+        <p>
+            Nombre: @Html.DisplayFor(model => model.Cliente!.Info)
+        </p>
+        <p>
+            Fecha: @Html.DisplayFor(model => model.FechaVenta)
+        </p>
+        <table>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <th>@Html.DisplayFor(model => model.Televisor!.Info)</th>
+                <th>@Html.DisplayFor(model => model.Cantidad)</th>
+                <th>@Html.DisplayFor(model => model.Total)</th>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
