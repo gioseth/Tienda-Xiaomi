@@ -13,11 +13,11 @@
             <div class="form-group">
                 <div class="form-group">
                     <label asp-for="ClienteId" class="control-label">Seleccione Cliente</label>
-                    <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId"></select>
+                    <select asp-for="ClienteId" class="form-control select2" asp-items="ViewBag.ClienteId"></select>
                 </div>
                 <hr />
                 <label asp-for="Mes" class="control-label"></label>
-                <select asp-for="Mes" class="form-control" required>
+                <select asp-for="Mes" class="form-control select2" required>
                     <option value="">Seleccione..</option>
                     <option value="1">Enero</option>
                     <option value="2">Febrero</option>
@@ -41,7 +41,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="TelevisorId" class="control-label">Seleccione Televisor</label>
-                <select asp-for="TelevisorId" class="form-control" asp-items="ViewBag.TelevisorId"></select>
+                <select asp-for="TelevisorId" class="form-control select2" asp-items="ViewBag.TelevisorId"></select>
             </div>
             
             <div class="form-group">

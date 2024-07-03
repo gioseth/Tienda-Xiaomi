@@ -46,7 +46,7 @@
     </div>
 
     @{
-        string codigoQR = String.Format("{0}|{1}|{2}|{3}|{4}",
+        string codigoQR = String.Format("NroVenta: {0} |Cliente: {1} |Fecha: {2} |Cantidad: {3} |Total: {4}",
         Model.NroVenta,
         Model.Cliente!.Info,
         Model.FechaVenta,
@@ -59,7 +59,8 @@
         var qrcode = new QRCode("qrcode", {
             text: "@codigoQR",
             width: 100,
-            height: 100
+            height: 100,
+            
         });
     </script>
 
