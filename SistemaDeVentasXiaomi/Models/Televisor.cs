@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaDeVentasXiaomi.Models
@@ -9,6 +10,7 @@ namespace SistemaDeVentasXiaomi.Models
         public int TelevisorId { get; set; }
         public string? Modelo { get; set; }
         [Required]
+        [Precision(10, 2)]
         public decimal Precio { get; set; }
         public string? Descripcion { get; set; }
         [Required]

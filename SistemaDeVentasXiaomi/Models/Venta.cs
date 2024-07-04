@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaDeVentasXiaomi.Models
@@ -9,6 +10,7 @@ namespace SistemaDeVentasXiaomi.Models
         public int VentaId { get; set; }
         public int NroVenta {  get; set; }
         [Column(TypeName = "date")]
+        [Required]
         public DateOnly FechaVenta { get; set; }
         [Required]
         public int Mes {  get; set; }
@@ -17,7 +19,9 @@ namespace SistemaDeVentasXiaomi.Models
         [Required]
         public string? Detalle { get; set; }
         public int Cantidad { get; set; }
+        [Precision(10,2)]
         public decimal PrecioUnidad { get; set; }
+        [Precision(10, 2)]
         public decimal Total { get; set; }
 
         //Relaciones
