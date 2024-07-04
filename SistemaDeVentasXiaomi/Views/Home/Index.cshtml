@@ -1,0 +1,166 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<body>
+    <section id="home" class="py-5 text-center">
+        <div class="container">
+            <h2>Bienvenido a la Tienda de Televisores</h2>
+            <p>Encuentra los mejores televisores a los mejores precios.</p>
+        </div>
+    </section>
+
+    <section id="products" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Productos</h2>
+            <div class="row" id="product-grid">
+                <!-- Aquí irán los productos -->
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Contacto</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje:</label>
+                    <textarea class="form-control" id="message" name="message"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+    </section>
+
+
+    <!-- Modal de Inicio de Sesión -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="loginEmail">Email:</label>
+                            <input type="email" class="form-control" id="loginEmail" name="loginEmail">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Contraseña:</label>
+                            <input type="password" class="form-control" id="loginPassword" name="loginPassword">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                        <a href="#" data-toggle="modal" data-target="#forgotPasswordModal" data-dismiss="modal">¿Olvidaste tu contraseña?</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Registro -->
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Registrarse</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="registerName">Nombre:</label>
+                            <input type="text" class="form-control" id="registerName" name="registerName">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerEmail">Email:</label>
+                            <input type="email" class="form-control" id="registerEmail" name="registerEmail">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">Contraseña:</label>
+                            <input type="password" class="form-control" id="registerPassword" name="registerPassword">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Registrarse</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Recuperación de Contraseña -->
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="forgotPasswordModalLabel">Recuperar Contraseña</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="forgotPasswordEmail">Email:</label>
+                            <input type="email" class="form-control" id="forgotPasswordEmail" name="forgotPasswordEmail">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Recuperar Contraseña</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const products = [
+                {
+                    name: 'Televisor 1',
+                    price: '$500',
+                    description: 'Descripción del Televisor 1',
+                    image: 'tv1.jpg'
+                },
+                {
+                    name: 'Televisor 2',
+                    price: '$600',
+                    description: 'Descripción del Televisor 2',
+                    image: 'tv2.jpg'
+                },
+                // Añade más productos aquí
+            ];
+
+            const productGrid = document.getElementById('product-grid');
+            products.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.classList.add('col-md-4', 'mb-4');
+
+                productElement.innerHTML = `
+                    <div class="card">
+                        <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${product.name}</h5>
+                            <p class="card-text">${product.description}</p>
+                            <p class="card-text text-primary">${product.price}</p>
+                        </div>
+                    </div>
+                `;
+
+                productGrid.appendChild(productElement);
+            });
+        });
+    </script>
+</body>

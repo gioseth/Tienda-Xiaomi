@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SistemaDeVentasXiaomi.Models.Televisor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @if (item.UrlFoto != null)
+                {
+                    <img src="~/fotos/@item.UrlFoto" class="img-thumbnail" width="130px " />
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+            
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TelevisorId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TelevisorId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TelevisorId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
